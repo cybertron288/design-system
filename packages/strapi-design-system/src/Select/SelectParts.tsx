@@ -75,7 +75,7 @@ const SelectTrigger = React.forwardRef<HTMLDivElement, TriggerProps>(
           </Flex>
           <Flex as="span" gap={3}>
             {onClear ? (
-              <IconBox
+              <Box
                 as="button"
                 hasRadius
                 background="transparent"
@@ -87,31 +87,18 @@ const SelectTrigger = React.forwardRef<HTMLDivElement, TriggerProps>(
                 title={clearLabel}
                 cursor="pointer"
               >
-                <Cross />
-              </IconBox>
+                <Cross fill="neutral600" />
+              </Box>
             ) : null}
-            <DownIcon>
-              <CaretDown />
-            </DownIcon>
+            <Select.Icon>
+              <CaretDown fill="neutral600" />
+            </Select.Icon>
           </Flex>
         </StyledTrigger>
       </Select.Trigger>
     );
   },
 );
-
-const IconBox = styled(Box)`
-  border: none;
-
-  svg {
-    height: 1.1rem;
-    width: 1.1rem;
-  }
-
-  svg path {
-    fill: ${({ theme }) => theme.colors.neutral600};
-  }
-`;
 
 interface StyledTriggerProps {
   $hasError: boolean;
@@ -132,16 +119,6 @@ const StyledTrigger = styled(Flex)<StyledTriggerProps>`
   }
 
   ${({ theme, $hasError }) => inputFocusStyle()({ theme, hasError: $hasError })};
-`;
-
-const DownIcon = styled(Select.Icon)`
-  & > svg {
-    width: 0.6rem;
-
-    & > path {
-      fill: ${({ theme }) => theme.colors.neutral600};
-    }
-  }
 `;
 
 /* -------------------------------------------------------------------------------------------------

@@ -22,7 +22,7 @@ export type TypographyProps<TElement extends keyof JSX.IntrinsicElements = 'span
     fontWeight?: keyof DefaultTheme['fontWeights'];
     lineHeight?: DefaultThemeOrCSSProp<'lineHeights', 'lineHeight'>;
     textAlign?: CSSProperties['textAlign'];
-    textColor?: keyof DefaultTheme['colors'];
+    textColor?: DefaultThemeOrCSSProp<'colors', 'color'>;
     textDecoration?: CSSProperties['textDecoration'];
     textTransform?: CSSProperties['textTransform'];
     variant?: (typeof TEXT_VARIANTS)[number];
@@ -39,7 +39,7 @@ export const Typography = styled.span.withConfig<TypographyProps>({
   font-weight: ${({ theme, fontWeight }) => extractStyleFromTheme(theme.fontWeights, fontWeight, undefined)};
   font-size: ${({ theme, fontSize }) => extractStyleFromTheme(theme.fontSizes, fontSize, undefined)};
   line-height: ${({ theme, lineHeight }) => extractStyleFromTheme(theme.lineHeights, lineHeight, lineHeight)};
-  color: ${({ theme, textColor }) => theme.colors[textColor || 'neutral800']};
+  color: ${({ theme, textColor }) => extractStyleFromTheme(theme.colors, textColor || 'neutral800', textColor)};
   text-align: ${({ textAlign }) => textAlign};
   text-decoration: ${({ textDecoration }) => textDecoration};
   text-transform: ${({ textTransform }) => textTransform};

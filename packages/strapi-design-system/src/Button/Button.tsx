@@ -28,7 +28,8 @@ export const ButtonWrapper = styled(BaseButton)<Required<Pick<ButtonProps, 'size
   height: ${({ theme, size }) => theme.sizes.button[size]};
 
   svg {
-    height: 1.2rem;
+    height: 1.6rem;
+    width: 1.6rem;
   }
 
   &[aria-disabled='true'] {

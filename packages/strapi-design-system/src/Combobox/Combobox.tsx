@@ -208,11 +208,11 @@ export const Combobox = React.forwardRef<ComboboxInputElement, ComboboxProps>(
       >
         <Trigger $hasError={Boolean(error)} $size={size} className={className}>
           <Flex flex="1" as="span" gap={3}>
-            {startIcon ? (
-              <Box as="span" aria-hidden>
-                {startIcon}
-              </Box>
-            ) : null}
+            {startIcon
+              ? React.cloneElement(startIcon as React.ReactElement, {
+                  'aria-hidden': true,
+                })
+              : null}
             <TextInput
               placeholder={placeholder}
               id={id}
@@ -224,7 +224,7 @@ export const Combobox = React.forwardRef<ComboboxInputElement, ComboboxProps>(
           </Flex>
           <Flex as="span" gap={3}>
             {internalTextValue && onClear ? (
-              <IconBox
+              <Box
                 as="button"
                 hasRadius
                 background="transparent"
@@ -234,9 +234,10 @@ export const Combobox = React.forwardRef<ComboboxInputElement, ComboboxProps>(
                 aria-label={clearLabel}
                 title={clearLabel}
                 ref={clearRef}
+                borderStyle="none"
               >
-                <Cross />
-              </IconBox>
+                <Cross fill="neutral600" height="1.2rem" width="1.2rem" />
+              </Box>
             ) : null}
             <DownIcon>
               <CaretDown />
@@ -278,19 +279,6 @@ export const Combobox = React.forwardRef<ComboboxInputElement, ComboboxProps>(
     );
   },
 );
-
-const IconBox = styled(Box)`
-  border: none;
-
-  svg {
-    height: 1.1rem;
-    width: 1.1rem;
-  }
-
-  svg path {
-    fill: ${({ theme }) => theme.colors.neutral600};
-  }
-`;
 
 interface TriggerProps {
   $hasError: boolean;
